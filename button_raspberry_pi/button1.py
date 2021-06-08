@@ -6,4 +6,6 @@ GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 while True:  # Run forever
     if GPIO.input(10) == GPIO.HIGH:
-        print("Button was pushed!")
+        print("Button off!")
+    elif GPIO.input(14) == GPIO.HIGH:
+        print("Button on!")
