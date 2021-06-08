@@ -67,8 +67,9 @@ class mylora(LoRa):
             while True:
                 pass
 
-    def button_callback(channel):
-        print("Button was pushed!")
+
+def button_callback(channel):
+    print("Button was pushed!")
 
 
 lora = mylora(verbose=False)
