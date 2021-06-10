@@ -96,6 +96,10 @@ assert(lora.get_agc_auto_on() == 1)
 try:
     print("START")
     lora.start()
+    if GPIO.input(38) == GPIO.HIGH:
+        print("Button off!")
+    elif GPIO.input(40) == GPIO.HIGH:
+        print("Button on!")
 except KeyboardInterrupt:
     sys.stdout.flush()
     print("Exit")
