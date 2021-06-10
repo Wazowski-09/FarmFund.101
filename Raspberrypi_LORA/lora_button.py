@@ -8,13 +8,6 @@ BOARD.setup()
 BOARD.reset()
 #parser = LoRaArgumentParser("Lora tester")
 
-GPIO.setwarnings(False)  # Ignore warning for now
-GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
-# GPIO.setmode(GPIO.BCM)
-# Set pin 10 to be an input pin and set initial value to be pulled low (off)
-GPIO.setup(38, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(40, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-
 class mylora(LoRa):
     def __init__(self, verbose=False):
         super(mylora, self).__init__(verbose)
@@ -96,6 +89,12 @@ lora.set_low_data_rate_optim(True)
 #  Medium Range  Defaults after init are 434.0MHz, Bw = 125 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on 13 dBm
 #lora.set_pa_config(pa_select=1)
 
+GPIO.setwarnings(False)  # Ignore warning for now
+GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
+# GPIO.setmode(GPIO.BCM)
+# Set pin 10 to be an input pin and set initial value to be pulled low (off)
+GPIO.setup(38, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(40, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 assert(lora.get_agc_auto_on() == 1)
 
