@@ -7,7 +7,7 @@ GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
 #GPIO.setup(14, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 # this is only for input pins
-GPIO.setup(10, RPIO.OUT, initial=RPIO.LOW, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(10, GPIO.OUT, initial=GPIO.LOW, pull_up_down=GPIO.PUD_UP)
 
 #CORRECT ("initial" is optional)
 #GPIO.setup(n, RPIO.OUT, initial=RPIO.LOW)
