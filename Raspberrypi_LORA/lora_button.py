@@ -57,7 +57,7 @@ class mylora(LoRa):
         while True:
             while (self.var==0):
                 print("START2")
-                if GPIO.input(21) == GPIO.HIGH:
+                while(GPIO.input(21) == GPIO.HIGH):
                     print ("Send: INF")
                     self.write_payload([255, 255, 0, 0, 73, 78, 70, 0]) # Send INF
                     self.set_mode(MODE.TX)
@@ -66,7 +66,7 @@ class mylora(LoRa):
 
                 self.set_mode(MODE.RXCONT) # Receiver mode
                 start_time = time.time()
-                while (time.time() - start_time < 10): # wait until receive data or 10s
+                while (time.time() - start_time < 1): # wait until receive data or 10s
                     pass;
             
             self.var=0
