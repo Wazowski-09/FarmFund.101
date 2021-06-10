@@ -1,4 +1,4 @@
-import RPi.GPIO as GPIO  # Import Raspberry Pi GPIO library
+
 import time
 from SX127x.LoRa import *
 #from SX127x.LoRaArgumentParser import LoRaArgumentParser
@@ -8,30 +8,32 @@ BOARD.setup()
 BOARD.reset()
 #parser = LoRaArgumentParser("Lora tester")
 
+
 class mylora(LoRa):
     def __init__(self, verbose=False):
         super(mylora, self).__init__(verbose)
         self.set_mode(MODE.SLEEP)
         self.set_dio_mapping([0] * 6)
-        self.var=0
 
     def on_rx_done(self):
         BOARD.led_on()
         #print("\nRxDone")
         self.clear_irq_flags(RxDone=1)
-        payload = self.read_payload(nocheck=True)
+        payload = self.read_payload(nocheck=True )# Receive INF
         print ("Receive: ")
-        print(bytes(payload).decode("utf-8",'ignore')) # Receive DATA
+        mens=bytes(payload).decode("utf-8",'ignore')
+        mens=mens[2:-1] #to discard \x00\x00 and \x00 at the end
+        print(mens)
         BOARD.led_off()
-        time.sleep(2) # Wait for the client be ready
-        print ("Send: ACK")
-        self.write_payload([255, 255, 0, 0, 65, 67, 75, 0]) # Send ACK
-        print ("1")
-        self.set_mode(MODE.TX)
-        print ("2")
-        self.var=1
-        print ("finish")
+        if mens=="INF":
+            print("Received data request INF")
+            time.sleep(2)
+            print ("Send mens: DATA RASPBERRY PI")
+            self.write_payload([255, 255, 0, 0, 68, 65, 84, 65, 32, 82, 65, 83, 80, 66, 69, 82, 82, 89, 32, 80, 73, 0]) # Send DATA RASPBERRY PI
+            self.set_mode(MODE.TX)
         time.sleep(2)
+        self.reset_ptr_rx()
+        self.set_mode(MODE.RXCONT)
 
     def on_tx_done(self):
         print("\nTxDone")
@@ -59,28 +61,11 @@ class mylora(LoRa):
 
     def start(self):          
         while True:
-            while (self.var==0):
-                print("START2")
-                if(GPIO.input(21) == GPIO.HIGH):
-                    print ("Send: INF")
-                    self.write_payload([255, 255, 0, 0, 73, 78, 70, 0]) # Send INF
-                    self.set_mode(MODE.TX)
-                    time.sleep(3) # there must be a better solution but sleep() works
-                    self.reset_ptr_rx()
-
-                self.set_mode(MODE.RXCONT) # Receiver mode
-                start_time = time.time()
-                self.write_payload([255, 255, 0, 0, 65, 67, 75, 0]) # Send ACK
-                self.set_mode(MODE.TX)
-                while (time.time() - start_time < 0.5): # wait until receive data or 10s
-                    pass;
-                # while (time.time()):
-                #     pass;
-            
-            self.var=0
             self.reset_ptr_rx()
             self.set_mode(MODE.RXCONT) # Receiver mode
-            # time.sleep(10)
+            while True:
+                pass;
+            
 
 lora = mylora(verbose=False)
 #args = parser.parse_args(lora) # configs in LoRaArgumentParser.py
@@ -98,17 +83,12 @@ lora.set_low_data_rate_optim(True)
 #  Medium Range  Defaults after init are 434.0MHz, Bw = 125 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on 13 dBm
 #lora.set_pa_config(pa_select=1)
 
-GPIO.setwarnings(False)  # Ignore warning for now
-# GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
-GPIO.setmode(GPIO.BCM)
-# Set pin 10 to be an input pin and set initial value to be pulled low (off)
-GPIO.setup(20, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
 
 assert(lora.get_agc_auto_on() == 1)
 
 try:
-    print("START1")
+    print("START")
     lora.start()
 except KeyboardInterrupt:
     sys.stdout.flush()
@@ -118,4 +98,4 @@ finally:
     sys.stdout.flush()
     print("Exit")
     lora.set_mode(MODE.SLEEP)
-    BOARD.teardown()
+BOARD.teardown()
