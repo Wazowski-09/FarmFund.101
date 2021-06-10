@@ -61,10 +61,9 @@ class mylora(LoRa):
                     self.write_payload([255, 255, 0, 0, 73, 78, 70, 0]) # Send INF
                     self.set_mode(MODE.TX)
                     time.sleep(3) # there must be a better solution but sleep() works
+                    self.reset_ptr_rx()
 
-                self.reset_ptr_rx()
                 self.set_mode(MODE.RXCONT) # Receiver mode
-            
                 start_time = time.time()
                 while (time.time() - start_time < 10): # wait until receive data or 10s
                     pass;
