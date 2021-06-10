@@ -56,7 +56,7 @@ class mylora(LoRa):
     def start(self):          
         while True:
             while (self.var==0):
-                if GPIO.input(40) == GPIO.HIGH:
+                if GPIO.input(21) == GPIO.HIGH:
                     print ("Send: INF")
                     self.write_payload([255, 255, 0, 0, 73, 78, 70, 0]) # Send INF
                     self.set_mode(MODE.TX)
@@ -90,11 +90,11 @@ lora.set_low_data_rate_optim(True)
 #lora.set_pa_config(pa_select=1)
 
 GPIO.setwarnings(False)  # Ignore warning for now
-GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
-# GPIO.setmode(GPIO.BCM)
+# GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
+GPIO.setmode(GPIO.BCM)
 # Set pin 10 to be an input pin and set initial value to be pulled low (off)
-GPIO.setup(38, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(40, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(20, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 assert(lora.get_agc_auto_on() == 1)
 
