@@ -28,6 +28,7 @@ class mylora(LoRa):
         self.write_payload([255, 255, 0, 0, 65, 67, 75, 0]) # Send ACK
         self.set_mode(MODE.TX)
         self.var=1
+        print ("finish")
         time.sleep(2)
 
     def on_tx_done(self):
