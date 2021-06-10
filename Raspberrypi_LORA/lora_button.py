@@ -56,6 +56,7 @@ class mylora(LoRa):
     def start(self):          
         while True:
             while (self.var==0):
+                print("START2")
                 if GPIO.input(21) == GPIO.HIGH:
                     print ("Send: INF")
                     self.write_payload([255, 255, 0, 0, 73, 78, 70, 0]) # Send INF
@@ -99,7 +100,7 @@ GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 assert(lora.get_agc_auto_on() == 1)
 
 try:
-    print("START")
+    print("START1")
     lora.start()
 except KeyboardInterrupt:
     sys.stdout.flush()
