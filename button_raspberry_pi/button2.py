@@ -80,7 +80,8 @@ lora.set_rx_crc(True)
 lora.set_low_data_rate_optim(True)
 
 GPIO.setwarnings(False)  # Ignore warning for now
-GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
+# GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
+GPIO.setmode(GPIO.BCM)
 # Set pin 10 to be an input pin and set initial value to be pulled low (off)
 GPIO.setup(38, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(40, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
