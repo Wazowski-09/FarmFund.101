@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import time
 GPIO.setmode(GPIO.BCM) # GPIO Numbers instead of board numbers
  
 RELAIS_1_GPIO = 16
