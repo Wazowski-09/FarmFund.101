@@ -8,6 +8,9 @@ RELAIS_3_GPIO = 16
 RELAIS_4_GPIO = 20
 GPIO.setwarnings(False)
 GPIO.setup(RELAIS_1_GPIO, GPIO.OUT)  # GPIO Assign mode
+GPIO.setup(RELAIS_2_GPIO, GPIO.OUT)
+GPIO.setup(RELAIS_3_GPIO, GPIO.OUT)
+GPIO.setup(RELAIS_4_GPIO, GPIO.OUT)
 
 while True:
     print("start")
