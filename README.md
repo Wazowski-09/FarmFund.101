@@ -25,3 +25,39 @@ https://raspberrypihq.com/use-a-push-button-with-raspberry-pi-gpio/
 ## Button Arduino
 
 https://www.arduino.cc/en/Tutorial/BuiltInExamples/Button
+
+## iStats
+
+https://github.com/Chris911/iStats
+
+## Raspi to Arduino
+
+https://www.elithecomputerguy.com/2020/12/arduino-read-serial-communication-with-raspberry-pi/
+
+https://roboticsbackend.com/raspberry-pi-arduino-serial-communication/#Serial_via_USB
+
+https://www.youtube.com/watch?v=3QSsnnbJYFc
+
+## git
+
+https://stackoverflow.com/questions/15745045/how-do-i-resolve-git-saying-commit-your-changes-or-stash-them-before-you-can-me
+
+## relay
+
+https://www.electronicshub.org/control-a-relay-using-raspberry-pi/
+
+https://tutorials-raspberrypi.com/raspberry-pi-control-relay-switch-via-gpio/
+
+## Raspi
+
+https://pinout.xyz/
+
+https://qastack.in.th/raspberrypi/12966/what-is-the-difference-between-board-and-bcm-for-gpio-pin-numbering
+
+## Arduino on Raspi
+
+https://magpi.raspberrypi.org/articles/program-arduino-uno-raspberry-pi
+
+## python 
+
+https://www.kite.com/python/answers/how-to-call-an-instance-method-in-the-same-class-in-python

@@ -1,3 +1,4 @@
+
 import time
 from SX127x.LoRa import *
 #from SX127x.LoRaArgumentParser import LoRaArgumentParser
@@ -14,7 +15,7 @@ class mylora(LoRa):
         self.set_mode(MODE.SLEEP)
         self.set_dio_mapping([0] * 6)
 
-    def on_rx_done(self):
+    def on_rx_dones(self):
         BOARD.led_on()
         #print("\nRxDone")
         self.clear_irq_flags(RxDone=1)
@@ -64,6 +65,9 @@ class mylora(LoRa):
             self.set_mode(MODE.RXCONT) # Receiver mode
             while True:
                 pass;
+
+    def test(self):
+
             
 
 lora = mylora(verbose=False)
