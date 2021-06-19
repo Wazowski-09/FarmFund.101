@@ -66,7 +66,7 @@ class mylora(LoRa):
             while True:
                 pass;
 
-    def test(self):
+    # def test(self):
 
             
 
