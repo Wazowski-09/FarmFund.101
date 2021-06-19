@@ -15,7 +15,7 @@ class mylora(LoRa):
         self.set_mode(MODE.SLEEP)
         self.set_dio_mapping([0] * 6)
 
-    def on_rx_dones(self):
+    def on_rx_done(self):
         BOARD.led_on()
         #print("\nRxDone")
         self.clear_irq_flags(RxDone=1)
