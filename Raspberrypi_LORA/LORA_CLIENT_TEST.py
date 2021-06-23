@@ -70,6 +70,8 @@ class mylora(LoRa):
         while True:
             self.reset_ptr_rx()
             self.set_mode(MODE.RXCONT) # Receiver mode
+            while True:
+                pass;
 
             
 
