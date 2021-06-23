@@ -66,7 +66,9 @@ class mylora(LoRa):
             while True:
                 pass;
 
-    # def test(self):
+    def test(self):
+        self.reset_ptr_rx()
+        self.set_mode(MODE.RXCONT) # Receiver mode
 
             
 
@@ -91,10 +93,13 @@ lora.set_low_data_rate_optim(True)
 assert(lora.get_agc_auto_on() == 1)
 
 try:
+    i = 0
     while True:
         print("START")
         # lora.start()
-        lora.on_rx_done()
+        lora.test()
+        i = i + 1
+        print(i)
 except KeyboardInterrupt:
     sys.stdout.flush()
     print("Exit")
