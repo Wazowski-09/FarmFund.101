@@ -97,6 +97,7 @@ assert(lora.get_agc_auto_on() == 1)
 
 try:
     # lora.start()
+    print(1)
     lora.test()
 except KeyboardInterrupt:
     sys.stdout.flush()
