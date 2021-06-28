@@ -35,6 +35,8 @@ class mylora(LoRa):
         time.sleep(2)
         self.reset_ptr_rx()
         self.set_mode(MODE.RXCONT)
+        x = 1
+        return x;
 
     def on_tx_done(self):
         print("\nTxDone")
@@ -117,6 +119,8 @@ try:
         print("Start")
         #lora.receiver_front()
         lora.start()
+        x = lora.on_rx_done()
+        print(x)
         # if GPIO.input(20) == GPIO.HIGH:
         #     print("Button on!")
         #     GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
