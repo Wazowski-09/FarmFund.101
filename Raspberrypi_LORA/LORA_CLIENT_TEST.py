@@ -1,5 +1,4 @@
 
-from _typeshed import StrPath
 import time
 from SX127x.LoRa import *
 #from SX127x.LoRaArgumentParser import LoRaArgumentParser
