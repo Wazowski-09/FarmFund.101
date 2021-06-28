@@ -109,7 +109,7 @@ assert(lora.get_agc_auto_on() == 1)
 
 try:
     # lora.start()
-    print(Start)
+    print("Start")
     lora.test()
     # while True:  # Run forever
     #     if GPIO.input(20) == GPIO.HIGH:
