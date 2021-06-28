@@ -116,7 +116,7 @@ try:
     while True:  # Run forever
         print("Start")
         #lora.receiver_front()
-        lora.test()
+        lora.start()
         # if GPIO.input(20) == GPIO.HIGH:
         #     print("Button on!")
         #     GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
