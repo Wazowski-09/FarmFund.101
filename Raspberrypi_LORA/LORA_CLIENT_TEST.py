@@ -1,8 +1,10 @@
 
+from _typeshed import StrPath
 import time
 from SX127x.LoRa import *
 #from SX127x.LoRaArgumentParser import LoRaArgumentParser
 from SX127x.board_config import BOARD
+import RPi.GPIO as GPIO
 
 BOARD.setup()
 BOARD.reset()
@@ -72,6 +74,13 @@ class mylora(LoRa):
             self.set_mode(MODE.RXCONT) # Receiver mode
             while True:
                 pass;
+            
+    def pump_front(self):
+        print ("Pump Front")
+        # self.write_payload([255, 255, 0, 0, 73, 78, 70, 0]) # Send INF
+        self.write_payload([255, 255, 0, 0, 112, 117, 109, 112, 102, 114, 111, 110, 116, 0])
+        self.set_mode(MODE.TX)
+        time.sleep(3)
 
             
 
@@ -91,14 +100,23 @@ lora.set_low_data_rate_optim(True)
 #  Medium Range  Defaults after init are 434.0MHz, Bw = 125 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on 13 dBm
 #lora.set_pa_config(pa_select=1)
 
+GPIO.setwarnings(False)  # Ignore warning for now
+GPIO.setmode(GPIO.BCM)
 
+GPIO.setup(20, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 assert(lora.get_agc_auto_on() == 1)
 
 try:
     # lora.start()
-    print(1)
+    print(Start)
     lora.test()
+    # while True:  # Run forever
+    #     if GPIO.input(20) == GPIO.HIGH:
+    #         print("Button off!")
+    #     elif GPIO.input(21) == GPIO.HIGH:
+    #         print("Button on!")
 except KeyboardInterrupt:
     sys.stdout.flush()
     print("Exit")
