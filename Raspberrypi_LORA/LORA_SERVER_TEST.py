@@ -74,7 +74,7 @@ class mylora(LoRa):
 
     def sender(self):
         print ("Send: IN")
-        self.write_payload([255, 255, 0, 0, 73, 78, 0]) # Send INF
+        self.write_payload([255, 255, 0, 0, 73, 78, 70, 0]) # Send INF
         self.set_mode(MODE.TX)
         time.sleep(3)
 
