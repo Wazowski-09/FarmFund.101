@@ -21,13 +21,20 @@ class mylora(LoRa):
         self.clear_irq_flags(RxDone=1)
         payload = self.read_payload(nocheck=True)
         print ("Receive: ")
-        print(bytes(payload).decode("utf-8",'ignore')) # Receive DATA
+        mens = bytes(payload).decode("utf-8",'ignore')
+        print(mens) # Receive DATA
         BOARD.led_off()
         time.sleep(2) # Wait for the client be ready
-        print ("Send: ACK")
-        self.write_payload([255, 255, 0, 0, 65, 67, 75, 0]) # Send ACK
-        self.set_mode(MODE.TX)
-        self.var=1
+        if mens=="pumpfront":
+            print("Received data request pumpfront")
+            time.sleep(2)
+            print ("Send mens: DATA RASPBERRY PI")
+            self.write_payload([255, 255, 0, 0, 68, 65, 84, 65, 32, 82, 65, 83, 80, 66, 69, 82, 82, 89, 32, 80, 73, 0]) # Send DATA RASPBERRY PI
+            self.set_mode(MODE.TX)
+        # print ("Send: ACK")
+        # self.write_payload([255, 255, 0, 0, 65, 67, 75, 0]) # Send ACK
+        # self.set_mode(MODE.TX)
+        # self.var=1
 
     def on_tx_done(self):
         print("\nTxDone")

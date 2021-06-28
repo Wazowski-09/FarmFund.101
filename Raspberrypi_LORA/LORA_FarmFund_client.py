@@ -26,7 +26,7 @@ class mylora(LoRa):
         mens=mens[2:-1] #to discard \x00\x00 and \x00 at the end
         print(mens)
         BOARD.led_off()
-        if mens=="pumpfront":
+        if mens=="INF":
             print("Received data request INF")
             time.sleep(2)
             print ("Send mens: DATA RASPBERRY PI")
@@ -71,6 +71,8 @@ class mylora(LoRa):
         while True:
             self.reset_ptr_rx()
             self.set_mode(MODE.RXCONT) # Receiver mode
+            while True:
+                pass;
             
     def pump_front(self):
         print ("Pump Front")
@@ -97,39 +99,37 @@ lora.set_low_data_rate_optim(True)
 #  Medium Range  Defaults after init are 434.0MHz, Bw = 125 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on 13 dBm
 #lora.set_pa_config(pa_select=1)
 
-# GPIO.setwarnings(False)  # Ignore warning for now
-# GPIO.setmode(GPIO.BCM)
-# RELAIS_1_GPIO = 22
-# RELAIS_2_GPIO = 12
-# RELAIS_3_GPIO = 16
-# GPIO.setup(20, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-# GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-# GPIO.setup(RELAIS_1_GPIO, GPIO.OUT)
-# GPIO.setup(RELAIS_2_GPIO, GPIO.OUT)
-# GPIO.setup(RELAIS_3_GPIO, GPIO.OUT)
+GPIO.setwarnings(False)  # Ignore warning for now
+GPIO.setmode(GPIO.BCM)
+RELAIS_1_GPIO = 22
+RELAIS_2_GPIO = 12
+RELAIS_3_GPIO = 16
+GPIO.setup(20, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(RELAIS_1_GPIO, GPIO.OUT)
+GPIO.setup(RELAIS_2_GPIO, GPIO.OUT)
+GPIO.setup(RELAIS_3_GPIO, GPIO.OUT)
 assert(lora.get_agc_auto_on() == 1)
 
 try:
     # lora.start()
-    # print("Start")
-    # lora.test()
+    print("Start")
+    lora.test()
     while True:  # Run forever
-        print("Start")
-        lora.receiver_front
-        # if GPIO.input(20) == GPIO.HIGH:
-        #     print("Button on!")
-        #     GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
-        #     GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
-        #     GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
-        #     lora.pump_front()
-        #     lora.receiver_front()
-        # elif GPIO.input(21) == GPIO.HIGH:
-        #     print("Button off!")
-        #     GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
-        #     GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
-        #     GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
-        # else:
-        #    print("else")
+        if GPIO.input(20) == GPIO.HIGH:
+            print("Button on!")
+            GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
+            lora.pump_front()
+            lora.receiver_front()
+        elif GPIO.input(21) == GPIO.HIGH:
+            print("Button off!")
+            GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
+        else:
+            print("else")
 except KeyboardInterrupt:
     sys.stdout.flush()
     print("Exit")
