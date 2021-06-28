@@ -76,8 +76,10 @@ class mylora(LoRa):
 
     def receiver_front(self):
         while True:
-            self.reset_ptr_rx()
+            #self.reset_ptr_rx()
             self.set_mode(MODE.RXCONT) # Receiver mode
+            while True:
+                pass;
             
     def pump_front(self):
         print ("Pump Front")
@@ -123,7 +125,7 @@ try:
     while True:  # Run forever
         print("Start")
         #lora.receiver_front()
-        lora.on_rx_done()
+        lora.receiver_front()
         # x = lora.on_rx_done()
         # print(x)
         # if GPIO.input(20) == GPIO.HIGH:
