@@ -93,11 +93,11 @@ class mylora(LoRa):
                 self.set_mode(MODE.RXCONT) # Receiver mode
                 print ("e")
                 start_time = time.time()
-                # while (time.time() - start_time < 10): # wait until receive data or 10s
-                #     n = n+1
-                #     if(n == 1):
-                #        print ("f")
-                #     pass;
+                while (time.time() - start_time < 1): # wait until receive data or 10s
+                    n = n+1
+                    if(n == 1):
+                       print ("f")
+                    pass;
                 # while True:
                 #     n = n+1
                 #     if(n == 1):
