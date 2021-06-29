@@ -188,6 +188,10 @@ assert(lora.get_agc_auto_on() == 1)
 
 try:
     print("START")
+    GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)  # on
+    GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
+    GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
+    GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
     while True:
         lora.receiver()
     # GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)  # on
