@@ -164,10 +164,10 @@ assert(lora.get_agc_auto_on() == 1)
 try:
     # lora.start()
     print("Start")
-    GPIO.output(RELAIS_1_GPIO, GPIO.LOW)  # out
-    GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
-    GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
-    GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
+    GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)  # on
+    GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
+    GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
+    GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
     #lora.pump_front()
     while True:  # Run forever
         if GPIO.input(20) == GPIO.HIGH:
