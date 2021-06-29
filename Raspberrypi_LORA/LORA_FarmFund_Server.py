@@ -2,6 +2,7 @@ import time
 from SX127x.LoRa import *
 #from SX127x.LoRaArgumentParser import LoRaArgumentParser
 from SX127x.board_config import BOARD
+import RPi.GPIO as GPIO
 
 BOARD.setup()
 BOARD.reset()
@@ -38,6 +39,18 @@ class mylora(LoRa):
             print ("Send mens: OKpumpfrontOFF")
             self.write_payload([255, 255, 0, 0, 79, 75, 112, 117, 109, 112, 102, 114, 111, 110, 116, 79, 70, 70, 0])
             self.set_mode(MODE.TX)
+        elif mens == "1":
+            print("Button on!")
+            GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
+        elif mens == "0":
+            print("Button off!")
+            GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
         time.sleep(2)
         self.reset_ptr_rx()
         self.set_mode(MODE.RXCONT)
@@ -119,6 +132,18 @@ lora.set_low_data_rate_optim(True)
 #  Medium Range  Defaults after init are 434.0MHz, Bw = 125 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on 13 dBm
 #lora.set_pa_config(pa_select=1)
 
+GPIO.setwarnings(False)  # Ignore warning for now
+GPIO.setmode(GPIO.BCM)
+RELAIS_1_GPIO = 26
+RELAIS_2_GPIO = 19
+RELAIS_3_GPIO = 6
+RELAIS_4_GPIO = 5
+GPIO.setup(20, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(RELAIS_1_GPIO, GPIO.OUT)
+GPIO.setup(RELAIS_2_GPIO, GPIO.OUT)
+GPIO.setup(RELAIS_3_GPIO, GPIO.OUT)
+GPIO.setup(RELAIS_4_GPIO, GPIO.OUT)
 
 assert(lora.get_agc_auto_on() == 1)
 
