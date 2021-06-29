@@ -98,7 +98,7 @@ class mylora(LoRa):
                     if(n == 1):
                        print ("f")
                     #pass;
-                    break
+                    #break
                 # while True:
                 #     n = n+1
                 #     if(n == 1):
