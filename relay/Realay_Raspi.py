@@ -2,10 +2,10 @@ import RPi.GPIO as GPIO
 import time
 GPIO.setmode(GPIO.BCM)  # GPIO Numbers instead of board numbers
 
-RELAIS_1_GPIO = 21
-RELAIS_2_GPIO = 12
-RELAIS_3_GPIO = 16
-RELAIS_4_GPIO = 20
+RELAIS_1_GPIO = 26
+RELAIS_2_GPIO = 19
+RELAIS_3_GPIO = 6
+RELAIS_4_GPIO = 5
 GPIO.setwarnings(False)
 GPIO.setup(RELAIS_1_GPIO, GPIO.OUT)  # GPIO Assign mode
 GPIO.setup(RELAIS_2_GPIO, GPIO.OUT)
