@@ -88,15 +88,15 @@ class mylora(LoRa):
                 self.set_mode(MODE.RXCONT) # Receiver mode
             
                 start_time = time.time()
-                # while (time.time() - start_time < 10): # wait until receive data or 10s
-                #     pass;
-                while True:
+                while (time.time() - start_time < 10): # wait until receive data or 10s
                     pass;
+                # while True:
+                #     pass;
             print(self.var)
             self.var=0
             self.reset_ptr_rx()
             self.set_mode(MODE.RXCONT) # Receiver mode
-            time.sleep(10)
+            #time.sleep(10)
 
 lora = mylora(verbose=False)
 #args = parser.parse_args(lora) # configs in LoRaArgumentParser.py
