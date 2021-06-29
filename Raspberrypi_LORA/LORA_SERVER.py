@@ -98,11 +98,11 @@ class mylora(LoRa):
                 #     if(n == 1):
                 #        print ("f")
                 #     pass;
-                while True:
-                    n = n+1
-                    if(n == 1):
-                       print ("f")
-                    pass;
+                # while True:
+                #     n = n+1
+                #     if(n == 1):
+                #        print ("f")
+                #     pass;
             print(self.var)
             self.var=0
             n = 0
