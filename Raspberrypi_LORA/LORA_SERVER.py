@@ -85,7 +85,7 @@ class mylora(LoRa):
                 print ("a")
                 self.set_mode(MODE.TX)
                 print ("b")
-                time.sleebp(3) # there must be a better solution but sleep() works
+                time.sleep(3) # there must be a better solution but sleep() works
                 print ("c")
                 self.reset_ptr_rx()
                 print ("d")
