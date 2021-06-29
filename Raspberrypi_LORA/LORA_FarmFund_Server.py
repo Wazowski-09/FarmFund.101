@@ -184,31 +184,31 @@ assert(lora.get_agc_auto_on() == 1)
 
 try:
     print("START")
-    while True:
-        lora.receiver()
-    # GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)  # on
-    # GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
-    # GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
-    # GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
-    # #lora.pump_front()
-    # while True:  # Run forever
-    #     if GPIO.input(20) == GPIO.HIGH:
-    #         print("Button on!")
-    #         GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
-    #         GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
-    #         GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
-    #         GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
-    #         lora.pump_front_on_main()
-    #     elif GPIO.input(21) == GPIO.HIGH:
-    #         print("Button off!")
-    #         GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
-    #         GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
-    #         GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
-    #         GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
-    #         lora.pump_front_off_main()
-    #     else:
-    #         print("else")
-    #         lora.receiver()
+    # while True:
+    #     lora.receiver()
+    GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)  # on
+    GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
+    GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
+    GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
+    #lora.pump_front()
+    while True:  # Run forever
+        if GPIO.input(20) == GPIO.HIGH:
+            print("Button on!")
+            GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
+            lora.pump_front_on_main()
+        elif GPIO.input(21) == GPIO.HIGH:
+            print("Button off!")
+            GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
+            lora.pump_front_off_main()
+        else:
+            print("else")
+            lora.receiver()
 except KeyboardInterrupt:
     sys.stdout.flush()
     print("Exit")
