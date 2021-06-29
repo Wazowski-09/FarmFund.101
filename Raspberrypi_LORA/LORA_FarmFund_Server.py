@@ -28,13 +28,13 @@ class mylora(LoRa):
         BOARD.led_off()
         time.sleep(2) # Wait for the client be ready
         if mens=="pumpfrontON":
-            print("Received data request pumpfront")
+            print("Received data request pumpfrontON")
             time.sleep(2)
             print ("Send mens: OKpumpfrontON")
             self.write_payload([255, 255, 0, 0, 79, 75, 112, 117, 109, 112, 102, 114, 111, 110, 116, 79, 78, 0])
             self.set_mode(MODE.TX)
         elif mens=="pumpfrontOFF":
-            print("Received data request pumpfront")
+            print("Received data request pumpfrontOFF")
             time.sleep(2)
             print ("Send mens: OKpumpfrontOFF")
             self.write_payload([255, 255, 0, 0, 79, 75, 112, 117, 109, 112, 102, 114, 111, 110, 116, 79, 70, 70, 0])
@@ -51,6 +51,18 @@ class mylora(LoRa):
             GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
             GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
             GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
+        elif mens=="OKpumpfrontONmain":
+            print("Received data request OKpumpfrontONmain")
+            time.sleep(2)
+            print ("Send mens: 1")
+            self.write_payload([255, 255, 0, 0, 49, 0])
+            self.set_mode(MODE.TX)
+        elif mens=="OKpumpfrontOFFmain":
+            print("Received data request OKpumpfrontOFFmain")
+            time.sleep(2)
+            print ("Send mens: 0")
+            self.write_payload([255, 255, 0, 0, 48, 0])
+            self.set_mode(MODE.TX)
         time.sleep(2)
         self.reset_ptr_rx()
         self.set_mode(MODE.RXCONT)
@@ -115,6 +127,29 @@ class mylora(LoRa):
         self.set_mode(MODE.TX)
         time.sleep(3)
 
+    def pump_front_on_main(self):
+        print(self.var)
+        while (self.var==0):
+            print ("pumpfrontONmain")
+            # self.write_payload([255, 255, 0, 0, 73, 78, 70, 0]) # Send INF
+            self.write_payload([255, 255, 0, 0, 112, 117, 109, 112, 102, 114, 111, 110, 116, 79, 78, 109, 97, 105, 110, 0])
+            self.set_mode(MODE.TX)
+            time.sleep(3)
+            self.reset_ptr_rx()
+            self.set_mode(MODE.RXCONT)
+            start_time = time.time()
+            while (time.time() - start_time < 10):
+                self.n = self.n + 1
+                if(self.n == 1):
+                    print ("f")
+        print(self.var)
+        self.var=0
+        self.n = 0
+        print ("g")
+        self.reset_ptr_rx()
+        print ("h")
+        self.set_mode(MODE.RXCONT)
+
 lora = mylora(verbose=False)
 #args = parser.parse_args(lora) # configs in LoRaArgumentParser.py
 
@@ -148,8 +183,29 @@ assert(lora.get_agc_auto_on() == 1)
 
 try:
     print("START")
-    while True:
-        lora.receiver()
+    GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)  # on
+    GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
+    GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
+    GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
+    #lora.pump_front()
+    while True:  # Run forever
+        if GPIO.input(20) == GPIO.HIGH:
+            print("Button on!")
+            GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
+            lora.pump_front_on_main()
+        elif GPIO.input(21) == GPIO.HIGH:
+            print("Button off!")
+            GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
+            lora.pump_front_off_main()
+        else:
+            print("else")
+            lora.receiver()
 except KeyboardInterrupt:
     sys.stdout.flush()
     print("Exit")

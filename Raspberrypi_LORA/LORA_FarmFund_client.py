@@ -40,6 +40,24 @@ class mylora(LoRa):
             print ("Send mens: 0")
             self.write_payload([255, 255, 0, 0, 48, 0])
             self.set_mode(MODE.TX)
+        elif mens == "pumpfrontONmain":
+            print("Received data request pumpfrontONmain")
+            time.sleep(2)
+            print ("Send mens: OKpumpfrontONmain")
+            self.write_payload([255, 255, 0, 0, 79, 75, 112, 117, 109, 112, 102, 114, 111, 110, 116, 79, 78, 109, 97, 105, 110, 0])
+            self.set_mode(MODE.TX)
+        elif mens == "1":
+            print("Button on!")
+            GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
+        elif mens == "0":
+            print("Button off!")
+            GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
         time.sleep(2)
         self.reset_ptr_rx()
         self.set_mode(MODE.RXCONT)
@@ -82,7 +100,12 @@ class mylora(LoRa):
     #         self.set_mode(MODE.RXCONT) # Receiver mode
     #         while True:
     #             pass;
-            
+    def receiver(self):          
+            self.reset_ptr_rx()
+            self.set_mode(MODE.RXCONT) # Receiver mode
+            while True:
+                pass;
+
     def pump_front_on(self):
         print(self.var)
         while (self.var==0):
@@ -186,6 +209,7 @@ try:
             lora.pump_front_off()
         else:
             print("else")
+            lora.receiver()
 except KeyboardInterrupt:
     sys.stdout.flush()
     print("Exit")
