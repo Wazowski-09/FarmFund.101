@@ -66,6 +66,9 @@ class mylora(LoRa):
         time.sleep(2)
         self.reset_ptr_rx()
         self.set_mode(MODE.RXCONT)
+        start_time = time.time()
+        while (time.time() - start_time < 5):
+            pass;
         # print ("Send: ACK")
         # self.write_payload([255, 255, 0, 0, 65, 67, 75, 0]) # Send ACK
         # self.set_mode(MODE.TX)
