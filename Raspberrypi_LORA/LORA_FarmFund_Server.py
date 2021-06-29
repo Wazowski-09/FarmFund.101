@@ -22,6 +22,7 @@ class mylora(LoRa):
         payload = self.read_payload(nocheck=True)
         print ("Receive: ")
         mens = bytes(payload).decode("utf-8",'ignore')
+        mens=mens[2:-1]
         print(mens) # Receive DATA
         BOARD.led_off()
         time.sleep(2) # Wait for the client be ready
@@ -31,6 +32,9 @@ class mylora(LoRa):
             print ("Send mens: OKpumpfront")
             self.write_payload([255, 255, 0, 0, 79, 75, 112, 117, 109, 112, 102, 114, 111, 110, 116, 0])
             self.set_mode(MODE.TX)
+        time.sleep(2)
+        self.reset_ptr_rx()
+        self.set_mode(MODE.RXCONT)
         # print ("Send: ACK")
         # self.write_payload([255, 255, 0, 0, 65, 67, 75, 0]) # Send ACK
         # self.set_mode(MODE.TX)
