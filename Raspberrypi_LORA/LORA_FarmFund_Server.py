@@ -28,8 +28,8 @@ class mylora(LoRa):
         if mens=="pumpfront":
             print("Received data request pumpfront")
             time.sleep(2)
-            print ("Send mens: DATA RASPBERRY PI")
-            self.write_payload([255, 255, 0, 0, 68, 65, 84, 65, 32, 82, 65, 83, 80, 66, 69, 82, 82, 89, 32, 80, 73, 0]) # Send DATA RASPBERRY PI
+            print ("Send mens: OKpumpfront")
+            self.write_payload([255, 255, 0, 0, 79, 75, 112, 117, 109, 112, 102, 114, 111, 110, 116, 0])
             self.set_mode(MODE.TX)
         # print ("Send: ACK")
         # self.write_payload([255, 255, 0, 0, 65, 67, 75, 0]) # Send ACK
@@ -79,6 +79,13 @@ class mylora(LoRa):
             self.set_mode(MODE.RXCONT) # Receiver mode
             time.sleep(10)
 
+    def receiver(self):          
+        while True:
+            self.reset_ptr_rx()
+            self.set_mode(MODE.RXCONT) # Receiver mode
+            while True:
+                pass;
+
     def sender(self):
         print ("Send: IN")
         # self.write_payload([255, 255, 0, 0, 73, 78, 70, 0]) # Send INF
@@ -107,7 +114,7 @@ assert(lora.get_agc_auto_on() == 1)
 
 try:
     print("START")
-    lora.sender()
+    lora.receiver()
 except KeyboardInterrupt:
     sys.stdout.flush()
     print("Exit")
