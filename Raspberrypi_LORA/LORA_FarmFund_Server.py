@@ -103,7 +103,6 @@ class mylora(LoRa):
             time.sleep(10)
 
     def receiver(self):          
-        while True:
             self.reset_ptr_rx()
             self.set_mode(MODE.RXCONT) # Receiver mode
             while True:
@@ -149,7 +148,8 @@ assert(lora.get_agc_auto_on() == 1)
 
 try:
     print("START")
-    lora.receiver()
+    while True:
+        lora.receiver()
 except KeyboardInterrupt:
     sys.stdout.flush()
     print("Exit")
