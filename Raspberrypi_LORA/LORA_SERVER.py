@@ -76,7 +76,8 @@ class mylora(LoRa):
         print("\non_FhssChangeChannel")
         print(self.get_irq_flags())
 
-    def start(self):          
+    def start(self): 
+        n = 0         
         while True:
             print(self.var)
             while (self.var==0):
@@ -93,12 +94,15 @@ class mylora(LoRa):
                 print ("e")
                 start_time = time.time()
                 while (time.time() - start_time < 10): # wait until receive data or 10s
-                    print ("f")
+                    n = n+1
+                    if(n == 1):
+                       print ("f")
                     pass;
                 # while True:
                 #     pass;
             print(self.var)
             self.var=0
+            n = 0
             print ("g")
             self.reset_ptr_rx()
             print ("h")
