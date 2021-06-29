@@ -117,6 +117,9 @@ class mylora(LoRa):
     def receiver(self):          
             self.reset_ptr_rx()
             self.set_mode(MODE.RXCONT) # Receiver mode
+            start_time = time.time()
+            while (time.time() - start_time < 5):
+                pass;
 
     def sender(self):
         print ("Send: IN")
