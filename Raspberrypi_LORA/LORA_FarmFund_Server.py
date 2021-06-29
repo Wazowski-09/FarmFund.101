@@ -26,11 +26,17 @@ class mylora(LoRa):
         print(mens) # Receive DATA
         BOARD.led_off()
         time.sleep(2) # Wait for the client be ready
-        if mens=="pumpfront":
+        if mens=="pumpfrontON":
             print("Received data request pumpfront")
             time.sleep(2)
-            print ("Send mens: OKpumpfront")
-            self.write_payload([255, 255, 0, 0, 79, 75, 112, 117, 109, 112, 102, 114, 111, 110, 116, 0])
+            print ("Send mens: OKpumpfrontON")
+            self.write_payload([255, 255, 0, 0, 79, 75, 112, 117, 109, 112, 102, 114, 111, 110, 116, 79, 78, 0])
+            self.set_mode(MODE.TX)
+        elif mens=="pumpfrontOFF":
+            print("Received data request pumpfront")
+            time.sleep(2)
+            print ("Send mens: OKpumpfrontOFF")
+            self.write_payload([255, 255, 0, 0, 79, 75, 112, 117, 109, 112, 102, 114, 111, 110, 116, 79, 70, 70, 0])
             self.set_mode(MODE.TX)
         time.sleep(2)
         self.reset_ptr_rx()

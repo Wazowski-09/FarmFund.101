@@ -28,11 +28,17 @@ class mylora(LoRa):
         mens=mens[2:-1] #to discard \x00\x00 and \x00 at the end
         print(mens)
         BOARD.led_off()
-        if mens=="OKpumpfront":
-            print("Received data request OKpumpfront")
+        if mens=="OKpumpfrontON":
+            print("Received data request OKpumpfrontON")
             time.sleep(2)
             print ("Send mens: 1")
             self.write_payload([255, 255, 0, 0, 49, 0])
+            self.set_mode(MODE.TX)
+        elif mens=="OKpumpfrontOFF":
+            print("Received data request OKpumpfrontOFF")
+            time.sleep(2)
+            print ("Send mens: 0")
+            self.write_payload([255, 255, 0, 0, 48, 0])
             self.set_mode(MODE.TX)
         time.sleep(2)
         self.reset_ptr_rx()
@@ -77,12 +83,35 @@ class mylora(LoRa):
     #         while True:
     #             pass;
             
-    def pump_front(self):
+    def pump_front_on(self):
         print(self.var)
         while (self.var==0):
-            print ("Pump Front")
+            print ("pumpfrontON")
             # self.write_payload([255, 255, 0, 0, 73, 78, 70, 0]) # Send INF
-            self.write_payload([255, 255, 0, 0, 112, 117, 109, 112, 102, 114, 111, 110, 116, 0])
+            self.write_payload([255, 255, 0, 0, 112, 117, 109, 112, 102, 114, 111, 110, 116, 79, 78, 0])
+            self.set_mode(MODE.TX)
+            time.sleep(3)
+            self.reset_ptr_rx()
+            self.set_mode(MODE.RXCONT)
+            start_time = time.time()
+            while (time.time() - start_time < 10):
+                self.n = self.n + 1
+                if(self.n == 1):
+                    print ("f")
+        print(self.var)
+        self.var=0
+        self.n = 0
+        print ("g")
+        self.reset_ptr_rx()
+        print ("h")
+        self.set_mode(MODE.RXCONT)
+
+    def pump_front_off(self):
+        print(self.var)
+        while (self.var==0):
+            print ("pumpfrontOFF")
+            # self.write_payload([255, 255, 0, 0, 73, 78, 70, 0]) # Send INF
+            self.write_payload([255, 255, 0, 0, 112, 117, 109, 112, 102, 114, 111, 110, 116, 79, 70, 70, 0])
             self.set_mode(MODE.TX)
             time.sleep(3)
             self.reset_ptr_rx()
@@ -143,7 +172,7 @@ try:
             GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
             GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
             GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
-            lora.pump_front()
+            lora.pump_front_on()
         elif GPIO.input(21) == GPIO.HIGH:
             print("Button off!")
             GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
