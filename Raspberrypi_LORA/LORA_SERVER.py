@@ -78,6 +78,7 @@ class mylora(LoRa):
 
     def start(self):          
         while True:
+            print(self.var)
             while (self.var==0):
                 print ("Send: INF")
                 self.write_payload([255, 255, 0, 0, 73, 78, 70, 0]) # Send INF
@@ -91,7 +92,7 @@ class mylora(LoRa):
                 #     pass;
                 while True:
                     pass;
-            
+            print(self.var)
             self.var=0
             self.reset_ptr_rx()
             self.set_mode(MODE.RXCONT) # Receiver mode
