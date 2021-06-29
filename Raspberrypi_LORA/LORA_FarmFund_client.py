@@ -120,14 +120,16 @@ lora.set_low_data_rate_optim(True)
 
 GPIO.setwarnings(False)  # Ignore warning for now
 GPIO.setmode(GPIO.BCM)
-RELAIS_1_GPIO = 22
-RELAIS_2_GPIO = 12
-RELAIS_3_GPIO = 16
+RELAIS_1_GPIO = 26
+RELAIS_2_GPIO = 19
+RELAIS_3_GPIO = 6
+RELAIS_4_GPIO = 5
 GPIO.setup(20, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(RELAIS_1_GPIO, GPIO.OUT)
 GPIO.setup(RELAIS_2_GPIO, GPIO.OUT)
 GPIO.setup(RELAIS_3_GPIO, GPIO.OUT)
+GPIO.setup(RELAIS_4_GPIO, GPIO.OUT)
 assert(lora.get_agc_auto_on() == 1)
 
 try:
@@ -140,13 +142,14 @@ try:
             GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
             GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
             GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
             lora.pump_front()
-            lora.receiver_front()
         elif GPIO.input(21) == GPIO.HIGH:
             print("Button off!")
             GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
             GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
             GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
         else:
             print("else")
 except KeyboardInterrupt:
