@@ -209,7 +209,7 @@ try:
             lora.pump_front_off()
         else:
             print("else")
-            lora.receiver()
+            #lora.receiver()
 except KeyboardInterrupt:
     sys.stdout.flush()
     print("Exit")
