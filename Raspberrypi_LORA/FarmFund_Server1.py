@@ -47,6 +47,18 @@ class mylora(LoRa):
             print ("Send mens: P1OFF1")
             self.write_payload([255, 255, 0, 0, 80, 49, 79, 70, 70, 49, 0]) # Send DATA RASPBERRY PI
             self.set_mode(MODE.TX)
+        elif mens=="P2OFF2":
+            print("Received data request P1OFF1")
+            GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
+        elif mens=="P2ON2":
+            print("Received data request P1ON1")
+            GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
         time.sleep(2)
         self.reset_ptr_rx()
         self.set_mode(MODE.RXCONT)
