@@ -61,3 +61,17 @@ https://magpi.raspberrypi.org/articles/program-arduino-uno-raspberry-pi
 ## python 
 
 https://www.kite.com/python/answers/how-to-call-an-instance-method-in-the-same-class-in-python
+
+## shutdown raspi
+
+https://raspberrypi.stackexchange.com/questions/381/how-do-i-turn-off-my-raspberry-pi
+
+https://www.raspberrypi.org/forums/viewtopic.php?t=97270
+
+## current time
+
+https://askubuntu.com/questions/634173/how-to-get-date-and-time-using-command-line-interface
+
+## BCM and BOARD raspi
+
+https://qastack.in.th/raspberrypi/12966/what-is-the-difference-between-board-and-bcm-for-gpio-pin-numbering
