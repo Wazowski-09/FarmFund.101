@@ -72,6 +72,8 @@ https://www.raspberrypi.org/forums/viewtopic.php?t=97270
 
 https://askubuntu.com/questions/634173/how-to-get-date-and-time-using-command-line-interface
 
+https://www.youtube.com/watch?v=oNn2jQ2eCm8
+
 ## BCM and BOARD raspi
 
 https://qastack.in.th/raspberrypi/12966/what-is-the-difference-between-board-and-bcm-for-gpio-pin-numbering
