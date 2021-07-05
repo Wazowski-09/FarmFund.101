@@ -33,12 +33,32 @@ class mylora(LoRa):
             GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
             GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
             GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
+            time.sleep(2)
+            print ("Send mens: P2ON2")
+            self.write_payload([255, 255, 0, 0, 80, 50, 79, 78, 50, 0]) # Send DATA RASPBERRY PI
+            self.set_mode(MODE.TX)
         elif mens=="P2OFF":
             print("Received data request P2OFF")
             GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
             GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
             GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
             GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
+            time.sleep(2)
+            print ("Send mens: P2OFF2")
+            self.write_payload([255, 255, 0, 0, 80, 50, 79, 70, 70, 50, 0]) # Send DATA RASPBERRY PI
+            self.set_mode(MODE.TX)
+        elif mens=="P1OFF1":
+            print("Received data request P1OFF1")
+            GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
+        elif mens=="P1ON1":
+            print("Received data request P1ON1")
+            GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
+            GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
+            GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
         time.sleep(2)
         self.reset_ptr_rx()
         self.set_mode(MODE.RXCONT)
