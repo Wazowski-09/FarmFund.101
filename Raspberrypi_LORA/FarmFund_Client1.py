@@ -153,9 +153,6 @@ try:
         elif GPIO.input(21) == GPIO.HIGH:
             print("Button off!")
             lora.pump_off()
-        else:
-            print("else")
-            #lora.receiver()
 except KeyboardInterrupt:
     sys.stdout.flush()
     print("Exit")
