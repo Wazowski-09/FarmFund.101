@@ -83,10 +83,11 @@ class mylora(LoRa):
         print("\non_FhssChangeChannel")
         print(self.get_irq_flags())
 
-    def receiver(self):          
+    def receiver(self):      
+        while True:    
             self.reset_ptr_rx()
             self.set_mode(MODE.RXCONT) # Receiver mode
-            start_time = time.time()
+            # start_time = time.time()
             while True:
                 pass;
 
