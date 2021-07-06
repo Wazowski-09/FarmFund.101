@@ -48,6 +48,7 @@ https://www.electronicshub.org/control-a-relay-using-raspberry-pi/
 
 https://tutorials-raspberrypi.com/raspberry-pi-control-relay-switch-via-gpio/
 
+
 ## Raspi
 
 https://pinout.xyz/
@@ -77,3 +78,11 @@ https://www.youtube.com/watch?v=oNn2jQ2eCm8
 ## BCM and BOARD raspi
 
 https://qastack.in.th/raspberrypi/12966/what-is-the-difference-between-board-and-bcm-for-gpio-pin-numbering
+
+## Blynk
+
+https://github.com/blynkkk?tab=repositories
+
+https://github.com/vshymanskyy/blynk-library-python
+
+https://github.com/blynkkk/lib-python

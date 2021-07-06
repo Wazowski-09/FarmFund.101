@@ -81,7 +81,7 @@ class mylora(LoRa):
         self.write_payload([255, 255, 0, 0, 80, 49, 79, 78, 0])
         self.set_mode(MODE.TX)
         time.sleep(3)
-        self.reset_ptr_rx()
+        # self.reset_ptr_rx()
         # self.set_mode(MODE.RXCONT)
         # start_time = time.time()
         # while (time.time() - start_time < 10):
@@ -102,7 +102,7 @@ class mylora(LoRa):
         self.write_payload([255, 255, 0, 0, 80, 49, 79, 70, 70, 0])
         self.set_mode(MODE.TX)
         time.sleep(3)
-        self.reset_ptr_rx()
+        # self.reset_ptr_rx()
         # self.set_mode(MODE.RXCONT)
         # start_time = time.time()
         # while (time.time() - start_time < 10):

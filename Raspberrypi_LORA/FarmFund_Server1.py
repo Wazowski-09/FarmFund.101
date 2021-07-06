@@ -32,7 +32,6 @@ class mylora(LoRa):
             GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
             GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
             GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
-            GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
             time.sleep(2)
             print ("Send mens: P1ON1")
             self.write_payload([255, 255, 0, 0, 80, 49, 79, 78, 49, 0]) # Send DATA RASPBERRY PI
@@ -42,23 +41,20 @@ class mylora(LoRa):
             GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
             GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
             GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
-            GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
             time.sleep(2)
             print ("Send mens: P1OFF1")
             self.write_payload([255, 255, 0, 0, 80, 49, 79, 70, 70, 49, 0]) # Send DATA RASPBERRY PI
             self.set_mode(MODE.TX)
         elif mens=="P2OFF2":
-            print("Received data request P1OFF1")
+            print("Received data request P2OFF2")
             GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
             GPIO.output(RELAIS_2_GPIO, GPIO.LOW)
             GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
-            GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
         elif mens=="P2ON2":
-            print("Received data request P1ON1")
+            print("Received data request P2ON2")
             GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)
             GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
             GPIO.output(RELAIS_3_GPIO, GPIO.LOW)
-            GPIO.output(RELAIS_4_GPIO, GPIO.LOW)
         time.sleep(2)
         self.reset_ptr_rx()
         self.set_mode(MODE.RXCONT)
@@ -115,13 +111,12 @@ GPIO.setmode(GPIO.BCM)
 RELAIS_1_GPIO = 26
 RELAIS_2_GPIO = 19
 RELAIS_3_GPIO = 6
-RELAIS_4_GPIO = 5
-GPIO.setup(20, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+# RELAIS_4_GPIO = 5
+
 GPIO.setup(RELAIS_1_GPIO, GPIO.OUT)
 GPIO.setup(RELAIS_2_GPIO, GPIO.OUT)
 GPIO.setup(RELAIS_3_GPIO, GPIO.OUT)
-GPIO.setup(RELAIS_4_GPIO, GPIO.OUT)
+# GPIO.setup(RELAIS_4_GPIO, GPIO.OUT)
 
 assert(lora.get_agc_auto_on() == 1)
 
@@ -130,7 +125,6 @@ try:
     GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)  # on
     GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
     GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
-    GPIO.output(RELAIS_4_GPIO, GPIO.HIGH)
     while True:
         lora.receiver()
 except KeyboardInterrupt:
