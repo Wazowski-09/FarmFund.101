@@ -124,7 +124,7 @@ try:
     print("START")
     GPIO.output(RELAIS_1_GPIO, GPIO.HIGH)  # on
     GPIO.output(RELAIS_2_GPIO, GPIO.HIGH)
-    GPIO.output(RELAIS_3_GPIO, GPIO.HIGH)
+    GPIO.output(RELAIS_PUMP_GPIO, GPIO.HIGH)
     while True:
         lora.receiver()
 except KeyboardInterrupt:
