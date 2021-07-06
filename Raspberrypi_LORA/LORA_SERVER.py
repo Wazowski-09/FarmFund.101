@@ -76,42 +76,24 @@ class mylora(LoRa):
         print("\non_FhssChangeChannel")
         print(self.get_irq_flags())
 
-    def start(self): 
-        n = 0         
+    def start(self):          
         while True:
-            print(self.var)
             while (self.var==0):
                 print ("Send: INF")
                 self.write_payload([255, 255, 0, 0, 73, 78, 70, 0]) # Send INF
-                print ("a")
                 self.set_mode(MODE.TX)
-                print ("b")
                 time.sleep(3) # there must be a better solution but sleep() works
-                print ("c")
                 self.reset_ptr_rx()
-                print ("d")
                 self.set_mode(MODE.RXCONT) # Receiver mode
-                print ("e")
+            
                 start_time = time.time()
                 while (time.time() - start_time < 10): # wait until receive data or 10s
-                    n = n+1
-                    if(n == 1):
-                       print ("f")
-                    #pass;
-                    #break
-                # while True:
-                #     n = n+1
-                #     if(n == 1):
-                #        print ("f")
-                #     pass;
-            print(self.var)
+                    pass;
+            
             self.var=0
-            n = 0
-            print ("g")
             self.reset_ptr_rx()
-            print ("h")
             self.set_mode(MODE.RXCONT) # Receiver mode
-            #time.sleep(10)
+            time.sleep(10)
 
 lora = mylora(verbose=False)
 #args = parser.parse_args(lora) # configs in LoRaArgumentParser.py
@@ -135,7 +117,6 @@ assert(lora.get_agc_auto_on() == 1)
 try:
     print("START")
     lora.start()
-    print ("stop")
 except KeyboardInterrupt:
     sys.stdout.flush()
     print("Exit")
