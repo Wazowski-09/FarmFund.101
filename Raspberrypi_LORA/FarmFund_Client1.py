@@ -25,12 +25,12 @@ class mylora(LoRa):
         payload = self.read_payload(nocheck=True)
         print ("Receive: ")
         print(bytes(payload).decode("utf-8",'ignore')) # Receive DATA
-        BOARD.led_off()
+        # BOARD.led_off()
         time.sleep(2) # Wait for the client be ready
-        print ("Send: ACK")
-        self.write_payload([255, 255, 0, 0, 65, 67, 75, 0]) # Send ACK
-        self.set_mode(MODE.TX)
-        self.var=1
+        # print ("Send: ACK")
+        # self.write_payload([255, 255, 0, 0, 65, 67, 75, 0]) # Send ACK
+        # self.set_mode(MODE.TX)
+        # self.var=1
 
     def on_tx_done(self):
         print("\nTxDone")
