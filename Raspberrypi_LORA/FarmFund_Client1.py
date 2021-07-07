@@ -19,18 +19,19 @@ class mylora(LoRa):
         self.n = 0
 
     def on_rx_done(self):
-        BOARD.led_on()
-        #print("\nRxDone")
-        self.clear_irq_flags(RxDone=1)
-        payload = self.read_payload(nocheck=True)
-        print ("Receive: ")
-        print(bytes(payload).decode("utf-8",'ignore')) # Receive DATA
-        # BOARD.led_off()
-        time.sleep(2) # Wait for the client be ready
-        # print ("Send: ACK")
-        # self.write_payload([255, 255, 0, 0, 65, 67, 75, 0]) # Send ACK
-        # self.set_mode(MODE.TX)
-        # self.var=1
+        print("false")
+        # BOARD.led_on()
+        # #print("\nRxDone")
+        # self.clear_irq_flags(RxDone=1)
+        # payload = self.read_payload(nocheck=True)
+        # print ("Receive: ")
+        # print(bytes(payload).decode("utf-8",'ignore')) # Receive DATA
+        # # BOARD.led_off()
+        # time.sleep(2) # Wait for the client be ready
+        # # print ("Send: ACK")
+        # # self.write_payload([255, 255, 0, 0, 65, 67, 75, 0]) # Send ACK
+        # # self.set_mode(MODE.TX)
+        # # self.var=1
 
     def on_tx_done(self):
         print("\nTxDone")
@@ -80,9 +81,9 @@ class mylora(LoRa):
         # self.write_payload([255, 255, 0, 0, 73, 78, 70, 0]) # Send INF
         self.write_payload([255, 255, 0, 0, 80, 49, 79, 78, 0])
         self.set_mode(MODE.TX)
-        # time.sleep(3)
-        # self.reset_ptr_rx()
-        time.sleep(5)
+        time.sleep(3)
+        self.reset_ptr_rx()
+        # time.sleep(5)
         # self.set_mode(MODE.RXCONT)
         # start_time = time.time()
         # while (time.time() - start_time < 10):
@@ -102,9 +103,9 @@ class mylora(LoRa):
         # self.write_payload([255, 255, 0, 0, 73, 78, 70, 0]) # Send INF
         self.write_payload([255, 255, 0, 0, 80, 49, 79, 70, 70, 0])
         self.set_mode(MODE.TX)
-        # time.sleep(3)
-        # self.reset_ptr_rx()
-        time.sleep(5)
+        time.sleep(3)
+        self.reset_ptr_rx()
+        # time.sleep(5)
         # self.set_mode(MODE.RXCONT)
         # start_time = time.time()
         # while (time.time() - start_time < 10):

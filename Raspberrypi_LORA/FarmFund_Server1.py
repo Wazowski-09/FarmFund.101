@@ -27,6 +27,7 @@ class mylora(LoRa):
         mens=mens[2:-1]
         print(mens) # Receive DATA
         BOARD.led_off()
+        time.sleep(2)
         if mens=="P1ON":
             print("Received data request P1ON")
             GPIO.output(RELAIS_RED_GPIO, GPIO.HIGH)
@@ -36,6 +37,7 @@ class mylora(LoRa):
             print ("Send mens: P1ON1")
             self.write_payload([255, 255, 0, 0, 80, 49, 79, 78, 49, 0]) # Send DATA RASPBERRY PI
             self.set_mode(MODE.TX)
+            self.reset_ptr_rx()
         elif mens=="P1OFF":
             print("Received data request P1OFF")
             GPIO.output(RELAIS_RED_GPIO, GPIO.LOW)
@@ -45,6 +47,7 @@ class mylora(LoRa):
             print ("Send mens: P1OFF1")
             self.write_payload([255, 255, 0, 0, 80, 49, 79, 70, 70, 49, 0]) # Send DATA RASPBERRY PI
             self.set_mode(MODE.TX)
+            self.reset_ptr_rx()
         elif mens=="P2OFF2":
             print("Received data request P2OFF2")
             GPIO.output(RELAIS_RED_GPIO, GPIO.LOW)
