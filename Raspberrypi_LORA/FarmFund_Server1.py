@@ -91,12 +91,16 @@ class mylora(LoRa):
         print(self.get_irq_flags())
 
     def receiver(self):     
-        while True:     
+        while True:
+            print("5")     
             self.reset_ptr_rx()
+            print("6")
             self.set_mode(MODE.RXCONT) # Receiver mode
+            print("7")
             # start_time = time.time()
             while True:
-                pass;
+                print("8")
+                # pass;
 
 lora = mylora(verbose=False)
 #args = parser.parse_args(lora) # configs in LoRaArgumentParser.py
@@ -133,6 +137,7 @@ try:
     GPIO.output(RELAIS_RED_GPIO, GPIO.HIGH)  # on
     GPIO.output(RELAIS_G_GPIO, GPIO.HIGH)
     GPIO.output(RELAIS_P_GPIO, GPIO.HIGH)
+    print("ready")
     lora.receiver()
 except KeyboardInterrupt:
     sys.stdout.flush()
