@@ -24,7 +24,7 @@ class mylora(LoRa):
         payload = self.read_payload(nocheck=True)
         print ("Receive: ")
         mens = bytes(payload).decode("utf-8",'ignore')
-        mens=mens[2:-1]
+        mens=mens[4:-1]
         print(mens) # Receive DATA
         BOARD.led_off()
         time.sleep(2)
