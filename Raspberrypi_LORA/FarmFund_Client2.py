@@ -81,7 +81,8 @@ class mylora(LoRa):
         self.write_payload([255, 255, 0, 0, 80, 50, 79, 78, 0])
         self.set_mode(MODE.TX)
         time.sleep(3)
-        # self.reset_ptr_rx()
+        self.reset_ptr_rx()
+        time.sleep(5)
         # self.set_mode(MODE.RXCONT)
         # start_time = time.time()
         # while (time.time() - start_time < 10):
@@ -102,7 +103,8 @@ class mylora(LoRa):
         self.write_payload([255, 255, 0, 0, 80, 50, 79, 70, 70, 0])
         self.set_mode(MODE.TX)
         time.sleep(3)
-        # self.reset_ptr_rx()
+        self.reset_ptr_rx()
+        time.sleep(5)
         # self.set_mode(MODE.RXCONT)
         # start_time = time.time()
         # while (time.time() - start_time < 10):
@@ -137,8 +139,11 @@ lora.set_low_data_rate_optim(True)
 
 GPIO.setwarnings(False)  # Ignore warning for now
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(20, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+BUTTON_OFF = 21
+BUTTON_ON = 20
+GPIO.setup(BUTTON_OFF, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(BUTTON_ON, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 assert(lora.get_agc_auto_on() == 1)
 
@@ -147,10 +152,10 @@ try:
     print("Start")
     #lora.pump_front()
     while True:  # Run forever
-        if GPIO.input(20) == GPIO.HIGH:
+        if GPIO.input(BUTTON_ON) == GPIO.HIGH:
             print("Button on!")
             lora.pump_on()
-        elif GPIO.input(21) == GPIO.HIGH:
+        elif GPIO.input(BUTTON_OFF) == GPIO.HIGH:
             print("Button off!")
             lora.pump_off()
 except KeyboardInterrupt:
@@ -161,4 +166,4 @@ finally:
     sys.stdout.flush()
     print("Exit")
     lora.set_mode(MODE.SLEEP)
-BOARD.teardown()
+    BOARD.teardown()
