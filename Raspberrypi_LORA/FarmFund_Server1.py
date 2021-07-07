@@ -108,8 +108,8 @@ class mylora(LoRa):
             # start_time = time.time()
             # while (time.time() - start_time < 10): # wait until receive data or 10s
             #         pass;
-            # while True:
-            #     pass;
+            while True:
+                pass;
 
 lora = mylora(verbose=False)
 #args = parser.parse_args(lora) # configs in LoRaArgumentParser.py
