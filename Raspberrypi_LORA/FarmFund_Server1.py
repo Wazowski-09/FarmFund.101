@@ -14,8 +14,6 @@ class mylora(LoRa):
         super(mylora, self).__init__(verbose)
         self.set_mode(MODE.SLEEP)
         self.set_dio_mapping([0] * 6)
-        self.var=0
-        self.n = 0
 
     def on_rx_done(self):
         print("11")
@@ -107,9 +105,9 @@ class mylora(LoRa):
             print("6")
             self.set_mode(MODE.RXCONT) # Receiver mode
             print("7")
-            start_time = time.time()
-            while (time.time() - start_time < 10): # wait until receive data or 10s
-                    pass;
+            # start_time = time.time()
+            # while (time.time() - start_time < 10): # wait until receive data or 10s
+            #         pass;
             # while True:
             #     pass;
 
