@@ -45,6 +45,7 @@ class mylora(LoRa):
             print ("Send mens: P1ON1")
             self.write_payload([255, 255, 0, 0, 80, 49, 79, 78, 49, 0]) # Send DATA RASPBERRY PI
             self.set_mode(MODE.TX)
+            self.clear_irq_flags(TxDone=1)
             # self.reset_ptr_rx()
         elif mens=="P1OFF":
             print("Received data request P1OFF")
@@ -55,6 +56,7 @@ class mylora(LoRa):
             print ("Send mens: P1OFF1")
             self.write_payload([255, 255, 0, 0, 80, 49, 79, 70, 70, 49, 0]) # Send DATA RASPBERRY PI
             self.set_mode(MODE.TX)
+            self.clear_irq_flags(TxDone=1)
             # self.reset_ptr_rx()
         elif mens=="P2OFF2":
             print("Received data request P2OFF2")
@@ -69,9 +71,9 @@ class mylora(LoRa):
         print("1")
         time.sleep(2)
         print("2")
-        self.reset_ptr_rx()
-        print("3")
         self.set_mode(MODE.SLEEP)
+        print("3")
+        self.reset_ptr_rx()
         print("4")
         self.set_mode(MODE.RXCONT)
         print("41")
