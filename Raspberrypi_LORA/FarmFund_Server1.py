@@ -18,16 +18,24 @@ class mylora(LoRa):
         self.n = 0
 
     def on_rx_done(self):
+        print("11")
         BOARD.led_on()
+        print("12")
         #print("\nRxDone")
         self.clear_irq_flags(RxDone=1)
+        print("13")
         payload = self.read_payload(nocheck=True)
         print ("Receive: ")
         mens = bytes(payload).decode("utf-8",'ignore')
+        print("14")
         mens=mens[2:-1]
+        print("15")
         print(mens) # Receive DATA
+        print("16")
         BOARD.led_off()
+        print("17")
         time.sleep(2)
+        print("18")
         if mens=="P1ON":
             print("Received data request P1ON")
             GPIO.output(RELAIS_RED_GPIO, GPIO.HIGH)
