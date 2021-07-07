@@ -56,8 +56,8 @@ class mylora(LoRa):
             GPIO.output(RELAIS_G_GPIO, GPIO.LOW)
             GPIO.output(RELAIS_P_GPIO, GPIO.LOW)
         time.sleep(2)
-        self.reset_ptr_rx()
-        self.set_mode(MODE.RXCONT)
+        # self.reset_ptr_rx()
+        # self.set_mode(MODE.RXCONT)
 
     def on_tx_done(self):
         print("\nTxDone")
