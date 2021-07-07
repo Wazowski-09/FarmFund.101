@@ -80,8 +80,8 @@ class mylora(LoRa):
         # self.write_payload([255, 255, 0, 0, 73, 78, 70, 0]) # Send INF
         self.write_payload([255, 255, 0, 0, 80, 50, 79, 78, 0])
         self.set_mode(MODE.TX)
-        time.sleep(3)
-        self.reset_ptr_rx()
+        # time.sleep(3)
+        # self.reset_ptr_rx()
         time.sleep(5)
         # self.set_mode(MODE.RXCONT)
         # start_time = time.time()
@@ -102,8 +102,8 @@ class mylora(LoRa):
         # self.write_payload([255, 255, 0, 0, 73, 78, 70, 0]) # Send INF
         self.write_payload([255, 255, 0, 0, 80, 50, 79, 70, 70, 0])
         self.set_mode(MODE.TX)
-        time.sleep(3)
-        self.reset_ptr_rx()
+        # time.sleep(3)
+        # self.reset_ptr_rx()
         time.sleep(5)
         # self.set_mode(MODE.RXCONT)
         # start_time = time.time()
