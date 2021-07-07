@@ -99,8 +99,7 @@ class mylora(LoRa):
             print("7")
             # start_time = time.time()
             while True:
-                print("8")
-                # pass;
+                pass;
 
 lora = mylora(verbose=False)
 #args = parser.parse_args(lora) # configs in LoRaArgumentParser.py
