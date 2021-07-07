@@ -63,8 +63,10 @@ class mylora(LoRa):
         print("2")
         self.reset_ptr_rx()
         print("3")
-        self.set_mode(MODE.RXCONT)
+        self.set_mode(MODE.SLEEP)
         print("4")
+        self.set_mode(MODE.RXCONT)
+        print("41")
 
     def on_tx_done(self):
         print("\nTxDone")
