@@ -65,7 +65,7 @@ class mylora(LoRa):
             GPIO.output(RELAIS_G_GPIO, GPIO.LOW)
             GPIO.output(RELAIS_P_GPIO, GPIO.LOW)
         print("1")
-        # time.sleep(2)
+        time.sleep(2)
         print("2")
         self.set_mode(MODE.SLEEP)
         print("3")
