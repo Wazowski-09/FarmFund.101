@@ -39,7 +39,7 @@ class mylora(LoRa):
             GPIO.output(RELAIS_RED_GPIO, GPIO.HIGH)
             GPIO.output(RELAIS_G_GPIO, GPIO.LOW)
             GPIO.output(RELAIS_P_GPIO, GPIO.LOW)
-            time.sleep(10)
+            time.sleep(15)
             print ("Send mens: P1ON1")
             self.write_payload([255, 255, 0, 0, 80, 49, 79, 78, 49, 0]) # Send DATA RASPBERRY PI
             self.set_mode(MODE.TX)
@@ -49,7 +49,7 @@ class mylora(LoRa):
             GPIO.output(RELAIS_RED_GPIO, GPIO.LOW)
             GPIO.output(RELAIS_G_GPIO, GPIO.HIGH)
             GPIO.output(RELAIS_P_GPIO, GPIO.HIGH)
-            time.sleep(10)
+            time.sleep(15)
             print ("Send mens: P1OFF1")
             self.write_payload([255, 255, 0, 0, 80, 49, 79, 70, 70, 49, 0]) # Send DATA RASPBERRY PI
             self.set_mode(MODE.TX)
