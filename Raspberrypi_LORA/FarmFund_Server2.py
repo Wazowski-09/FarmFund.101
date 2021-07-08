@@ -27,6 +27,7 @@ class mylora(LoRa):
         mens=mens[2:-1]
         print(mens) # Receive DATA
         BOARD.led_off()
+        time.sleep(2)
         if mens=="P2ON":
             print("Received data request P2ON")
             GPIO.output(RELAIS_RED_GPIO, GPIO.HIGH)
@@ -58,8 +59,9 @@ class mylora(LoRa):
             GPIO.output(RELAIS_G_GPIO, GPIO.LOW)
             GPIO.output(RELAIS_P_GPIO, GPIO.LOW)
         time.sleep(2)
-        # self.reset_ptr_rx()
-        # self.set_mode(MODE.RXCONT)
+        self.set_mode(MODE.SLEEP)
+        self.reset_ptr_rx()
+        self.set_mode(MODE.RXCONT)
 
     def on_tx_done(self):
         print("\nTxDone")
